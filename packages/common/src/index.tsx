@@ -1,44 +1,30 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
-import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Routes } from './Routes';
 
 declare const global: {HermesInternal: null | {}};
 
 export const App = () => {
-  const [count, setCount] = useState(0);
-  
   return (
     <>
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Counter</Text>
-        <Text style={styles.sectionDescription}>{count}</Text>
-        <Button title="increment" onPress={() => setCount(count + 1)} />
+      <View style={styles.container}>
+        <View style={styles.wrapper}>
+          <Routes />
+        </View>
       </View>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
+  wrapper: {
+    backgroundColor: '#F5FCFF',
+    width: '100%',
+    maxWidth: 425
+  }
 });
