@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   wrapper: {
+    flex: 1,
     backgroundColor: '#F5FCFF',
     width: '100%',
     maxWidth: 425
