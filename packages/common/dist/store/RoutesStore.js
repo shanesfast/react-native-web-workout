@@ -10,7 +10,7 @@ var mobx_1 = require("mobx");
 var react_1 = require("react");
 var RoutesStore = /** @class */ (function () {
     function RoutesStore() {
-        this.screen = "WorkoutHistory";
+        this.screen = "CurrentWorkout";
     }
     __decorate([
         mobx_1.observable
