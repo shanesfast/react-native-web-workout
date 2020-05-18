@@ -1,7 +1,8 @@
-/// <reference types="react" />
+import { RootStore } from './RootStore';
 declare type Routes = 'WorkoutHistory' | 'CurrentWorkout';
-declare class RoutesStore {
+export declare class RoutesStore {
+    rootStore: RootStore;
+    constructor(rootStore: RootStore);
     screen: Routes;
 }
-export declare const RoutesStoreContext: import("react").Context<RoutesStore>;
 export {};

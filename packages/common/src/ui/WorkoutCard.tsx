@@ -1,10 +1,12 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface WorkoutCardProps {
   excercise: string;
   repsAndWeight: string;
   sets: string[];
+  onSetPress: (index: number) => void;
 }
 
 const styles = StyleSheet.create({
@@ -16,7 +18,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 3,
     flexDirection: "column",
-    padding: 10
+    padding: 10,
+    marginBottom: 10
   },
   topRow: {
     flexDirection: "row",
@@ -34,10 +37,10 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: 30,
-    width: 30,
+    height: 50,
+    width: 50,
     backgroundColor: "#418BCC",
-    borderRadius: 15,
+    borderRadius: 25,
   },
   whiteFont: {
     color: '#fff'
@@ -53,7 +56,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export const WorkoutCard: React.FC<WorkoutCardProps> = ({excercise, repsAndWeight, sets}) => {
+export const WorkoutCard: React.FC<WorkoutCardProps> = observer(({excercise, repsAndWeight, sets, onSetPress}) => {
     return (
       <View style={styles.card}>
         <View style={styles.topRow}>
@@ -68,15 +71,15 @@ export const WorkoutCard: React.FC<WorkoutCardProps> = ({excercise, repsAndWeigh
               </View>
             );
 
-            if (set === '') return (<View style={[styles.circle, styles.grayBG]} />);
+            if (set === '') return (<TouchableOpacity style={[styles.circle, styles.grayBG]} onPress={() => onSetPress(index)} />);
 
             return (
-              <View key={set + index} style={styles.circle}>
+              <TouchableOpacity key={set + index} style={styles.circle} onPress={() => onSetPress(index)}>
                 <Text style={styles.whiteFont}>{set}</Text>
-              </View>
+              </TouchableOpacity>
             )
           })}
         </View>
       </View>
     );
-}
+});

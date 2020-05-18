@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var mobx_react_lite_1 = require("mobx-react-lite");
 var react_1 = __importDefault(require("react"));
 var react_native_1 = require("react-native");
 var styles = react_native_1.StyleSheet.create({
@@ -14,7 +15,8 @@ var styles = react_native_1.StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 3,
         flexDirection: "column",
-        padding: 10
+        padding: 10,
+        marginBottom: 10
     },
     topRow: {
         flexDirection: "row",
@@ -32,10 +34,10 @@ var styles = react_native_1.StyleSheet.create({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: 30,
-        width: 30,
+        height: 50,
+        width: 50,
         backgroundColor: "#418BCC",
-        borderRadius: 15,
+        borderRadius: 25,
     },
     whiteFont: {
         color: '#fff'
@@ -50,8 +52,8 @@ var styles = react_native_1.StyleSheet.create({
         color: "#DEEDFA"
     }
 });
-exports.WorkoutCard = function (_a) {
-    var excercise = _a.excercise, repsAndWeight = _a.repsAndWeight, sets = _a.sets;
+exports.WorkoutCard = mobx_react_lite_1.observer(function (_a) {
+    var excercise = _a.excercise, repsAndWeight = _a.repsAndWeight, sets = _a.sets, onSetPress = _a.onSetPress;
     return (react_1.default.createElement(react_native_1.View, { style: styles.card },
         react_1.default.createElement(react_native_1.View, { style: styles.topRow },
             react_1.default.createElement(react_native_1.Text, { style: styles.topRowText }, excercise),
@@ -61,8 +63,8 @@ exports.WorkoutCard = function (_a) {
                 return (react_1.default.createElement(react_native_1.View, { key: set + index, style: [styles.circle, styles.grayBG] },
                     react_1.default.createElement(react_native_1.Text, { style: styles.grayFont }, "X")));
             if (set === '')
-                return (react_1.default.createElement(react_native_1.View, { style: [styles.circle, styles.grayBG] }));
-            return (react_1.default.createElement(react_native_1.View, { key: set + index, style: styles.circle },
+                return (react_1.default.createElement(react_native_1.TouchableOpacity, { style: [styles.circle, styles.grayBG], onPress: function () { return onSetPress(index); } }));
+            return (react_1.default.createElement(react_native_1.TouchableOpacity, { key: set + index, style: styles.circle, onPress: function () { return onSetPress(index); } },
                 react_1.default.createElement(react_native_1.Text, { style: styles.whiteFont }, set)));
         }))));
-};
+});
